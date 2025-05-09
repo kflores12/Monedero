@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
+
 
 public class MonederoTest {
   private Cuenta cuenta;
@@ -88,5 +90,20 @@ public class MonederoTest {
     assertEquals(500, cuenta.getSaldo());
 
   }
+
+  @Test
+  @DisplayName("Se realizan depositos y extracciones combinados")
+  void operacionesCombinadas() {
+    cuenta.poner(3000);
+    cuenta.sacar(1000);
+    cuenta.poner(2000);
+    cuenta.sacar(2000);
+
+    assertEquals(2000, cuenta.getSaldo());
+    assertEquals(4, cuenta.getMovimientos().size());
+    assertEquals(3000, cuenta.getMontoExtraidoA(LocalDate.now()));
+  }
+
+
 
 }
