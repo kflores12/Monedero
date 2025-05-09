@@ -16,40 +16,40 @@ public class Movimiento {
     this.esDeposito = esDeposito;
   }
 
-  public double getMonto() {
+  public final double getMonto() {
     return monto;
   }
 
-  public LocalDate getFecha() {
+  public final LocalDate getFecha() {
     return fecha;
   }
 
-  public boolean fueDepositado(LocalDate fecha) {
+  public final boolean fueDepositado(LocalDate fecha) {
     return isDeposito() && esDeLaFecha(fecha);
   }
 
-  public boolean fueExtraido(LocalDate fecha) {
+  public final boolean fueExtraido(LocalDate fecha) {
     return isExtraccion() && esDeLaFecha(fecha);
   }
 
-  public boolean esDeLaFecha(LocalDate fecha) {
+  public final boolean esDeLaFecha(LocalDate fecha) {
     return this.fecha.equals(fecha);
   }
 
-  public boolean isDeposito() {
+  public final boolean isDeposito() {
     return esDeposito;
   }
 
-  public boolean isExtraccion() {
+  public final boolean isExtraccion() {
     return !esDeposito;
   }
 
-  public void agregateA(Cuenta cuenta) {
+  public final void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
     cuenta.agregarMovimiento(fecha, monto, esDeposito);
   }
 
-  public double calcularValor(Cuenta cuenta) {
+  public final double calcularValor(Cuenta cuenta) {
     if (esDeposito) {
       return cuenta.getSaldo() + getMonto();
     } else {
