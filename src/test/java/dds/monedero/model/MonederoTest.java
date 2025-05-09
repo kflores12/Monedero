@@ -76,7 +76,7 @@ public class MonederoTest {
   void ExtraerMasDe1000() {
     cuenta.setSaldo(5000);
     Exception exception = assertThrows(MaximoExtraccionDiarioException.class, () -> cuenta.sacar(1001));
-    assertEquals(("No puede extraer mas de $ 1000 diarios"), exception.getMessage());
+    assertEquals(("No puede extraer mas de $ 1000 diarios, limite: 1000.0"), exception.getMessage());
     assertEquals(5000, cuenta.getSaldo());
 
   }
@@ -95,13 +95,13 @@ public class MonederoTest {
   @DisplayName("Se realizan depositos y extracciones combinados")
   void operacionesCombinadas() {
     cuenta.poner(3000);
-    cuenta.sacar(1000);
+    cuenta.sacar(300);
     cuenta.poner(2000);
-    cuenta.sacar(2000);
+    cuenta.sacar(400);
 
-    assertEquals(2000, cuenta.getSaldo());
+    assertEquals(4300, cuenta.getSaldo());
     assertEquals(4, cuenta.getMovimientos().size());
-    assertEquals(3000, cuenta.getMontoExtraidoA(LocalDate.now()));
+    assertEquals(700, cuenta.getMontoExtraidoA(LocalDate.now()));
   }
 
 

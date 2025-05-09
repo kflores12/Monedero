@@ -51,7 +51,7 @@ public class Cuenta {
     var limite = MAX_EXTRACCION_DIARIA - montoExtraidoHoy;
     if (cuanto > limite) {
       throw new MaximoExtraccionDiarioException(
-          "No puede extraer mas de $ " + MAX_EXTRACCION_DIARIA + " diarios, " + "límite: " + limite);
+          "No puede extraer mas de $ " + MAX_EXTRACCION_DIARIA + " diarios, " + "limite: " + limite);
     }
     new Movimiento(LocalDate.now(), cuanto, false).agregateA(this);
   }
